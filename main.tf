@@ -101,10 +101,10 @@ data "aws_iam_policy_document" "allow-access-for-cloudtrail" {
 		}
 		
 		actions   = ["s3:GetBucketAcl"]
-    	resources = [
-			"arn:aws:s3:::james-web-service-log-bucket"
+    		resources = [
+			"arn:aws:s3:::james-own-web-service-log-bucket"
 		]
-    	effect = "Allow"
+    		effect = "Allow"
 	}
 	
 	statement {
@@ -114,16 +114,16 @@ data "aws_iam_policy_document" "allow-access-for-cloudtrail" {
 		}
 
 		actions   = ["s3:PutObject"]
-    	resources = [
-			"arn:aws:s3:::james-web-service-log-bucket/*"
+    		resources = [
+			"arn:aws:s3:::james-own-web-service-log-bucket/*"
 		]
-    	effect = "Allow"
+    		effect = "Allow"
 	}
 }
 
 resource "aws_cloudtrail" "service-log" {
 	name = "service.log"
-	s3_bucket_name = "james-web-service-log-bucket"
+	s3_bucket_name = "james-own-web-service-log-bucket"
 
 	event_selector {
 		read_write_type = "All"
