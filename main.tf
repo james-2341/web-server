@@ -70,13 +70,6 @@ resource "aws_security_group_rule" "service-egress" {
 resource "aws_key_pair" "master-key" {
 	key_name   = "master-key.pem"
 	public_key = tls_private_key.rsa.public_key_openssh
-
-	provisioner "local-exec" {
-    command = <<-EOT
-      echo '${tls_private_key.rsa}' > ./'${aws_key_pair.master-key.key_name}'.pem
-      chmod 600 ./'${aws_key_pair.master-key.key_name}'.pem
-    EOT
-  }
 }
 
 resource "tls_private_key" "rsa-4096-example" {
