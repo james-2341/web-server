@@ -83,7 +83,7 @@ resource "local_file" "master-key" {
 }
 
 resource "aws_s3_bucket" "cloudtrail-bucket" {
-	bucket = "james-web-service-log-bucket"
+	bucket = "james-own-web-service-log-bucket"
 
 	lifecycle { create_before_destroy = true }
 }
